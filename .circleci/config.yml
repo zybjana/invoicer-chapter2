@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  anchore-engine: anchore/anchore-engine@1.1.0
 jobs:
  build:
   # Variable expansion in working_directory not supported at this time
