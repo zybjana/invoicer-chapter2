@@ -1,4 +1,19 @@
 version: 2
+orbs:
+  anchore: anchore/anchore-engine@1.0.0
+jobs:
+  local_image_scan:
+    executor: anchore/anchore_engine
+    steps:
+      - checkout
+      - run:
+          name: build container
+          command: docker build -t ${CIRCLE_PROJECT_REPONAME}:ci .
+      - anchore/analyze_local_image:
+          image_name: ${CIRCLE_PROJECT_REPONAME}:ci
+          timeout: '500'
+          analysis_fail: True
+          
 jobs:
  build:
   # Variable expansion in working_directory not supported at this time
