@@ -1,12 +1,15 @@
 version: 2
 orbs:
   anchore-engine: anchore/anchore-engine@1.1.0
-workflows:
+orkflows:
   scan_image:
     jobs:
       - anchore/image_scan:
           image_name: 'docker.io/anchore/anchore-engine:latest'
-          timeout: '300'
+          private_registry: true
+          registry_name: docker.io
+          registry_user: '${DOCKER_USER}'
+          registry_pass: '${DOCKER_PASS}'
 jobs:
  build:
   # Variable expansion in working_directory not supported at this time
