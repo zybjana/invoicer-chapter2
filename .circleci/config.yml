@@ -47,13 +47,3 @@ jobs:
              sudo tee $CIRCLE_ARTIFACTS/docker-image-shasum256.txt;
            docker push ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME};
          fi
-
-version: 2.1
-orbs:
-  anchore-engine: anchore/anchore-engine@1.0.0
-workflows:
-  scan_image:
-    jobs:
-      - anchore/image_scan:
-          image_name: anchore/anchore-engine:latest
-          timeout: '300'
