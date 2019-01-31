@@ -8,6 +8,6 @@ RUN mkdir /app/statics/
 ADD statics /app/statics/
 
 USER app
-EXPOSE 9090
+EXPOSE 8080
 WORKDIR /app
 ENTRYPOINT /app/invoicer
